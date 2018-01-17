@@ -35,18 +35,17 @@ def read_csv(file,field):
 def data(request):
     file_id = request.POST.get('test')
     field_id = request.POST.get('field')
-    if not file_id or not field_id:
-        return render(request,'myfiles/filenotfount.html')
-    else :
-        return render(request,'myfiles/filefound.html',{'field_id':field_id,'file_id':file_id})
-    my_data = read_csv(file_id,field_id)
-    my_dir = "/media/mrrobot/ACADEMIC/pycharm Projects/assignment/assignment/myfiles"
-    lst = reader(my_dir)
-    fields = ['no', 'name', 'last name', 'pay', 'size', 'age', 'some', 'idk', 'Storage & Organization', 'someother']
-    context = {
-        'file_lst': lst,
-        'fields': fields,
-        'data': my_data,
-        'favourite':'yes',
-    }
-    return render(request, 'myfiles/index.html', context)
+    if request.method == "POST":
+        return render(request, 'myfiles/filenotfount.html')
+    else:
+        my_data = read_csv(file_id, field_id)
+        my_dir = "/media/mrrobot/ACADEMIC/pycharm Projects/assignment/assignment/myfiles"
+        lst = reader(my_dir)
+        fields = ['no', 'name', 'last name', 'pay', 'size', 'age', 'some', 'idk', 'Storage & Organization', 'someother']
+        context = {
+            'file_lst': lst,
+            'fields': fields,
+            'data': my_data,
+            'favourite': 'yes',
+        }
+        return render(request, 'myfiles/index.html', context)

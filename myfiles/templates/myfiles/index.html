@@ -1,10 +1,7 @@
 {% if file_lst %}
 
-<html lang="en">
-
-
 <body>
-<form action="{% url 'myfiles:data' %}" method="post" id="forum">
+<form action="{% url 'myfiles:data' %}" method="POST" id="forum">
 
     {% csrf_token %}
     <select name="test" id="test-select">
@@ -38,5 +35,4 @@
 {% endif %}
 </body>
 
-</html>
 {% endif%}
