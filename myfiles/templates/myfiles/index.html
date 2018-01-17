@@ -1,0 +1,42 @@
+{% if file_lst %}
+
+<html lang="en">
+
+
+<body>
+<form action="{% url 'myfiles:data' %}" method="post" id="forum">
+
+    {% csrf_token %}
+    <select name="test" id="test-select">
+
+      {% for i in file_lst %}
+        <option value="{{i}}">{{i}}</option>
+      {% endfor %}
+    </select>
+
+    <div id="cond-div">
+    <select name="field" id="field-select">
+
+      {% for i in fields %}
+        <option value="{{i}}">{{i}}</option>
+      {% endfor %}
+    </select>
+    </div>
+    <input type="button" value="Submit" form="forum"/>
+</form>
+
+
+<div>
+{% if data %}
+    {% for i in data %}
+        <p>{{i}}</p>
+    {% endfor %}
+{% endif %}
+</div>
+{% if favourite %}
+    <p>favourite was hit</p>
+{% endif %}
+</body>
+
+</html>
+{% endif%}
